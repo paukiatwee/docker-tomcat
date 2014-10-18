@@ -10,4 +10,5 @@ WORKDIR /opt
 RUN chmod +x setup.sh
 RUN /bin/bash setup.sh
 ENV JAVA_HOME /opt/java
-ENV PATH $PATH:$JAVA_HOME/bin
+ENV M2_HOME /opt/maven
+ENV PATH $PATH:$JAVA_HOME/bin:$M2_HOME/bin

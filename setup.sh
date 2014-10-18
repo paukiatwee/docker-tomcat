@@ -3,6 +3,7 @@
 # variables
 JAVA_URL=http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.tar.gz
 TOMCAT_URL=https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.14/bin/apache-tomcat-8.0.14.tar.gz
+MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.2.3/binaries/apache-maven-3.2.3-bin.tar.gz
 
 
 # install Java
@@ -21,12 +22,6 @@ function install_java() {
 
   echo 'Set Java environment variables...'
   export JAVA_HOME=/opt/java
-
-  echo 'Setup profile...'
-  echo 'export JAVA_HOME=/opt/java' >> /etc/profile.d/java.sh
-  echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile.d/java.sh
-
-  chmod u+x /etc/profile.d/java.sh
 
   echo 'Finish install Java...'
 }
@@ -51,7 +46,25 @@ function install_tomcat() {
   echo 'Finish install Tomcat...'
 }
 
+function install_maven() {
+  echo 'Download Maven...'
+  wget "$MAVEN_URL"
+
+  echo 'Untar Maven...'
+  tar -zxf apache-maven-*.tar.gz
+
+  echo 'Remove Maven tar...'
+  rm apache-maven-*.tar.gz
+
+  echo 'Rename Maven folder...'
+  mv apache-maven-* maven
+
+  echo 'Finish install Maven...'
+}
+
 # step 1
 install_java
 # step 2
 install_tomcat
+# step 3
+install_maven
