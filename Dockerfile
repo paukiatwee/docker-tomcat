@@ -3,7 +3,7 @@ FROM centos:centos7
 
 MAINTAINER Pau Kiat Wee
 
-RUN yum install tar wget -y
+RUN yum install zip tar wget -y
 
 ADD setup.sh /opt/setup.sh
 WORKDIR /opt
